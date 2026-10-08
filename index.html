@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <title>연산 게임</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main class="app">
+      <section id="start-screen" class="screen" aria-labelledby="game-title">
+        <h1 id="game-title">연산 게임</h1>
+        <label class="nickname-field" for="nickname">닉네임</label>
+        <input id="nickname" class="answer nickname-input" type="text" maxlength="20" autocomplete="nickname" placeholder="닉네임을 입력하세요">
+        <p class="intro">풀고 싶은 연산을 골라 보세요.</p>
+        <fieldset class="operation-picker">
+          <legend>연산 선택</legend>
+          <label><input type="checkbox" name="operation" value="+" checked> 더하기</label>
+          <label><input type="checkbox" name="operation" value="-" checked> 빼기</label>
+          <label><input type="checkbox" name="operation" value="×" checked> 곱하기</label>
+          <label><input type="checkbox" name="operation" value="÷" checked> 나누기</label>
+        </fieldset>
+        <p id="selection-error" class="message" role="alert" hidden>연산을 하나 이상 선택해 주세요.</p>
+        <p id="result-message" class="message" role="status" aria-live="polite"></p>
+        <p id="ranking-error" class="message" role="alert" hidden></p>
+        <button id="start-button" class="text-button" type="button">게임 시작</button>
+        <section class="ranking" aria-labelledby="ranking-title">
+          <h2 id="ranking-title">랭킹</h2>
+          <p class="ranking-caption">60초 동안 맞힌 문제 수 · 이 기기에 저장됩니다</p>
+          <table>
+            <thead>
+              <tr><th scope="col">순위</th><th scope="col">닉네임</th><th scope="col">정답</th><th scope="col">오답</th></tr>
+            </thead>
+            <tbody id="ranking-list"></tbody>
+          </table>
+          <p id="empty-ranking" class="ranking-caption">아직 기록이 없습니다.</p>
+        </section>
+      </section>
+
+      <section id="game-screen" class="screen" aria-labelledby="question" hidden>
+        <header class="game-header">
+          <h1>연산 게임</h1>
+          <p id="timer" class="timer" role="timer" aria-live="off">60초</p>
+        </header>
+        <p id="score" class="score" aria-live="polite">정답 0 · 오답 0</p>
+        <p id="question" class="question" aria-live="polite"></p>
+        <form id="answer-form" novalidate>
+          <label class="visually-hidden" for="answer">정답 입력</label>
+          <input id="answer" class="answer" type="text" inputmode="numeric" autocomplete="off" aria-describedby="feedback">
+          <p id="feedback" class="message" role="status" aria-live="polite"></p>
+          <div class="keypad" aria-label="숫자 키패드">
+            <button type="button" data-key="1">1</button>
+            <button type="button" data-key="2">2</button>
+            <button type="button" data-key="3">3</button>
+            <button type="button" data-key="4">4</button>
+            <button type="button" data-key="5">5</button>
+            <button type="button" data-key="6">6</button>
+            <button type="button" data-key="7">7</button>
+            <button type="button" data-key="8">8</button>
+            <button type="button" data-key="9">9</button>
+            <button type="button" data-key="0">0</button>
+            <button type="button" data-action="backspace" aria-label="마지막 숫자 지우기">⌫</button>
+            <button class="submit-key" type="submit">입력</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
